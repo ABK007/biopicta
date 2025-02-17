@@ -1,25 +1,31 @@
 version: "3"
 services:
   app:
-    context: .  # This tells Docker Compose to use the Dockerfile in the current directory
-    dockerfile: Dockerfile  # Optional if your file is named "Dockerfile"
-    image: biopicta-website  # Name of the built image
+    build:
+      context: .  # ✅ This tells Docker Compose to use the Dockerfile in the current directory
+      dockerfile: Dockerfile  # ✅ Explicitly specifying Dockerfil
+      args:  # ✅ Pass environment variables at build time
+        - NEXT_PUBLIC_SANITY_DATASET=production
+        - NEXT_PUBLIC_SANITY_PROJECT_ID=5kygfurw
+    image: biopicta-website:latest  # ✅ Name of the built image
     container_name: biopicta-container
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.Biopicta.rule=Host(Biopicta.com)"
+      - "traefik.http.routers.Biopicta.rule=Host(`biopicta.com`)"  # ✅ Quotes added
       - "traefik.http.routers.Biopicta.entrypoints=websecure"
       - "traefik.http.services.Biopicta.loadbalancer.server.port=8009"
       - "traefik.http.routers.Biopicta.tls=true"
       - "traefik.http.routers.Biopicta.tls.certresolver=myresolver"
     networks:
       - traefik
-    pull_policy: always
-    command: ["next", "start"]
+
+    environment:
+      - NEXT_PUBLIC_SANITY_DATASET=production  # ✅ Add this
+      - NEXT_PUBLIC_SANITY_PROJECT_ID=5kygfurw  # ✅ Add this
+
+
+    command: ["npm", "start", "--", "-p", "8009"]  # ✅ Explicitly specify port
 
 networks:
   traefik:
     external: true
-
-
-
