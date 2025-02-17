@@ -42,7 +42,7 @@ export default function ContactForm() {
 
   return (
     // Outer container: flex-col on small screens, flex-row on md and up.
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-[#F5F5F5] px-4 space-y-6 md:space-y-0 md:space-x-6">
+    <div id="foam" className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-[#F5F5F5] px-4 space-y-6 md:space-y-0 md:space-x-6">
       {/* Header Section */}
       <div className="w-full max-w-lg text-center">
         <h2 className="text-xl font-semibold text-gray-700">
@@ -78,7 +78,7 @@ export default function ContactForm() {
           </div>
 
           {/* Email Field */}
-          <div>
+          <div >
             <label htmlFor="email" className="block text-gray-600 font-medium">
               Email
             </label>

@@ -15,34 +15,37 @@ const Navbar = () => {
       <div className="flex justify-between items-center px-4">
         {/* Logo and Links */}
         <div className="flex items-center gap-6">
-          <Link href="/" ><Image src={Biopicta} alt="Biopicta Logo" width={120} height={40} /></Link>
-          
+          <Link href="/">
+            <Image src={Biopicta} alt="Biopicta Logo" width={120} height={40} />
+          </Link>
+
           <div className="hidden md:flex gap-6">
             <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
               Templates
             </h1>
             <Link href="/blogs">
-            <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
-              Blogs
-            </h1>
+              <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
+                Blogs
+              </h1>
             </Link>
           </div>
         </div>
         {/* Buttons */}
         <div className="hidden md:flex gap-4">
           {/* Sign Up Button */}
-          <div className="flex items-center gap-2 bg-[#B7512C] text-white px-4 py-2 rounded-full shadow hover:bg-[#9c3e21] cursor-pointer">
-            <Image
-              src={Contact}
-              alt="Sign Up Icon"
-              width={20}
-              height={20}
-              className="rounded-full"
-            />
-            <h1 className="text-sm font-medium">Get Access</h1>
-          </div>
-
-      
+          <a href="#foam">
+            {' '}
+            <div className="flex items-center gap-2 bg-[#B7512C] text-white px-4 py-2 rounded-full shadow hover:bg-[#9c3e21] cursor-pointer">
+              <Image
+                src={Contact}
+                alt="Sign Up Icon"
+                width={20}
+                height={20}
+                className="rounded-full"
+              />
+              <h1 className="text-sm font-medium">Get Access</h1>
+            </div>
+          </a>
         </div>
         {/* Burger Menu Icon */}
         <div
@@ -61,13 +64,14 @@ const Navbar = () => {
           <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
             Templates
           </h1>
-           <Link href="/blogs">
-          <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
-            Blogs
-          </h1></Link>
+          <Link href="/blogs">
+            <h1 className="text-black text-sm cursor-pointer hover:text-[#B7512C]">
+              Blogs
+            </h1>
+          </Link>
           <div className="flex flex-col mx-0 items-start gap-4">
             {/* Sign Up Button */}
-            <div className="flex items-center gap-2 bg-[#B7512C] text-white px-4 py-2 rounded-full shadow hover:bg-[#9c3e21] cursor-pointer">
+            <a href="#foam">  <div  className="flex items-center gap-2 bg-[#B7512C] text-white px-4 py-2 rounded-full shadow hover:bg-[#9c3e21] cursor-pointer">
               <Image
                 src={Contact}
                 alt="Sign Up Icon"
@@ -75,10 +79,11 @@ const Navbar = () => {
                 height={20}
                 className="rounded-full"
               />
-              <h1 className="text-sm font-medium">Get Access</h1>
-            </div>
-
-
+             
+                {' '}
+                <h1 className="text-sm font-medium">Get Access</h1>
+              
+            </div></a>
           </div>
         </div>
       )}

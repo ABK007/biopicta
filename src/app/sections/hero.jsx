@@ -39,9 +39,10 @@ const Hero = () => {
             Create professional Scientific Posters with pre-designed templates.
             Save time and get research posters with a few clicks.
           </p>
+          <a href="#foam">
           <button className="mt-6 capitalize bg-[#B7512C] text-white px-5 rounded-full py-2 w-44 hover:bg-orange-800">
             Try for free
-          </button>
+          </button></a>
         </div>
 
         <div className="mt-8 lg:mt-0">

@@ -29,7 +29,7 @@ function SegmentedDisplay({ value }: { value: string }) {
   const handleHoverOut = () => {
     gsap.to(valueRef.current, {
       scale: 1,
-      color: "#ffffff",
+      color: "#FFFFF",
       boxShadow: "none",
       duration: 0.3,
       ease: "power2.out",
@@ -38,6 +38,7 @@ function SegmentedDisplay({ value }: { value: string }) {
 
   return (
     <div
+      // Removed extra background styling
       className="rounded-lg p-4 w-20 h-24 flex items-center justify-center cursor-pointer"
       onMouseEnter={handleHover}
       onMouseLeave={handleHoverOut}
@@ -62,9 +63,10 @@ export default function Time() {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Calculate a fixed target date 45 days from now.
-    const now = new Date();
-    const targetDate = new Date(now.getTime() + 45 * 24 * 60 * 60 * 1000);
+    // Use the environment variable if available; otherwise, use a default value.
+    const launchDate =
+      process.env.NEXT_PUBLIC_LAUNCH_DATE || "2025-04-01T23:59:59";
+    const targetDate = new Date(launchDate);
 
     const updateTimer = () => {
       const now = new Date();
@@ -77,18 +79,9 @@ export default function Time() {
           minutes: Math.floor((difference / (1000 * 60)) % 60).toString(),
           seconds: Math.floor((difference / 1000) % 60).toString(),
         });
-      } else {
-        // Once we’ve reached or passed the target date, stop the timer or set everything to zero
-        setTimeLeft({
-          days: "0",
-          hours: "0",
-          minutes: "0",
-          seconds: "0",
-        });
       }
     };
 
-    // Update every second
     const timer = setInterval(updateTimer, 1000);
     updateTimer();
 
@@ -99,6 +92,8 @@ export default function Time() {
     if (marqueeRef.current) {
       const elementWidth = marqueeRef.current.offsetWidth;
 
+      // Animate the container from offscreen left to offscreen right,
+      // then repeat infinitely.
       gsap.fromTo(
         marqueeRef.current,
         { x: -elementWidth },
@@ -106,7 +101,7 @@ export default function Time() {
           x: window.innerWidth,
           duration: 20, // Adjust duration for desired speed
           ease: "none",
-          repeat: -1,   // Infinite repeat
+          repeat: -1, // Infinite repeat
         }
       );
     }
@@ -114,9 +109,12 @@ export default function Time() {
 
   return (
     // Container with overflow-hidden to clip the marquee animation
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden ">
       <div ref={marqueeRef} className="flex items-center gap-4">
-        <span className="text-3xl font-semibold text-white">Launching Soon</span>
+
+        <span className="text-3xl font-semibold text-white  ">
+          Launching Soon
+        </span>
 
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center">
@@ -135,8 +133,11 @@ export default function Time() {
             <SegmentedDisplay value={timeLeft.seconds} />
             <span className="text-white/80 text-sm mt-2">SECONDS</span>
           </div>
+
         </div>
       </div>
+
     </div>
+
   );
-}
+}  
