@@ -24,7 +24,7 @@ services:
       - NEXT_PUBLIC_SANITY_PROJECT_ID=5kygfurw  # ✅ Add this
 
 
-    command: ["npm", "start", "--", "-p", "8009"]  # ✅ Explicitly specify port
+    command: ["npm", "start"]  # ✅ Explicitly specify port
 
 networks:
   traefik:
